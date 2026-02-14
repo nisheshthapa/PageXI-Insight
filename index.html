@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PageXI - Insight | Premium Book Rentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F0;
+            --dark-navy: #1a1a2e;
+            --burgundy: #7a1f1f;
+            --gold: #c9a961;
+            --soft-gray: #6b6b6b;
+            --border-color: #d4cfc0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--cream);
+            color: var(--dark-navy);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 247, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border-color);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--burgundy);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--burgundy);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #2a2a3e 100%);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: rgba(250, 247, 240, 0.85);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1.2rem 2rem;
+            border: none;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 1.2rem 2.5rem;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #5a1515;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--dark-navy);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .category-card:hover::before {
+            left: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.4rem;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: var(--soft-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Featured Books */
+        .featured {
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, var(--cream) 0%, #f5f1e8 100%);
+        }
+
+        .featured-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInScale 0.6s ease-out forwards;
+        }
+
+        .book-card:nth-child(1) { animation-delay: 0.1s; }
+        .book-card:nth-child(2) { animation-delay: 0.2s; }
+        .book-card:nth-child(3) { animation-delay: 0.3s; }
+        .book-card:nth-child(4) { animation-delay: 0.4s; }
+        .book-card:nth-child(5) { animation-delay: 0.5s; }
+        .book-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .book-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="rgba(255,255,255,0.03)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .book-info {
+            padding: 1.5rem;
+        }
+
+        .book-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .book-author {
+            color: var(--soft-gray);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .rental-price {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.4rem;
+            color: var(--burgundy);
+            font-weight: 700;
+        }
+
+        .rental-period {
+            font-size: 0.85rem;
+            color: var(--soft-gray);
+        }
+
+        .add-to-cart-btn {
+            background: var(--dark-navy);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--burgundy);
+            transform: scale(1.05);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            position: relative;
+            padding: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--soft-gray);
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--burgundy);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .book-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+
+        .book-detail-cover {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .book-detail-info h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .book-detail-info .author {
+            font-size: 1.2rem;
+            color: var(--soft-gray);
+            margin-bottom: 2rem;
+        }
+
+        .book-description {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--dark-navy);
+        }
+
+        .rental-options {
+            background: #f9f7f3;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .rental-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .rental-option:hover,
+        .rental-option.selected {
+            border-color: var(--burgundy);
+        }
+
+        .modal-add-cart {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .modal-add-cart:hover {
+            background: #5a1515;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+            z-index: 3000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            color: var(--dark-navy);
+        }
+
+        .close-cart {
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--soft-gray);
+            transition: color 0.3s;
+        }
+
+        .close-cart:hover {
+            color: var(--burgundy);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-cover {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            color: var(--dark-navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-period {
+            font-size: 0.9rem;
+            color: var(--soft-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            font-size: 1.2rem;
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+
+        .cart-footer {
+            padding: 2rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .cart-total span:first-child {
+            font-family: 'Libre Baskerville', serif;
+            color: var(--dark-navy);
+        }
+
+        .cart-total span:last-child {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .checkout-btn:hover {
+            background: #5a1515;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--soft-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .book-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">PageXI - Insight</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('browse')">Browse</a></li>
+                <li><a href="#" onclick="showPage('account')">My Account</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Literary Journey<br>Begins Here</h1>
+            <p>Access thousands of premium books. Rent, read, return. No commitment, just great stories.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for books, authors, genres...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <h2 class="section-title">Browse by Genre</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="filterByCategory('fiction')">
+                <div class="category-icon">📚</div>
+                <h3>Fiction</h3>
+                <p>Novels, stories, and literary works</p>
+            </div>
+            <div class="category-card" onclick="filterByCategory('nonfiction')">
+                <div class="category-icon">📖</div>
+                <h3>Non-Fiction</h3>
+                <p>Biographies, history, and essays</p>
+            </div>
+            <div class="category-card" onclick="filterByCategory('business')">
+                <div class="category-icon">💼</div>
+                <h3>Business</h3>
+                <p>Leadership, strategy, and growth</p>
+            </div>
+            <div class="category-card" onclick="filterByCategory('science')">
+                <div class="category-icon">🔬</div>
+                <h3>Science</h3>
+                <p>Research, discoveries, and innovation</p>
+            </div>
+            <div class="category-card" onclick="filterByCategory('selfhelp')">
+                <div class="category-icon">🌟</div>
+                <h3>Self-Help</h3>
+                <p>Personal growth and wellness</p>
+            </div>
+            <div class="category-card" onclick="filterByCategory('nepali')">
+                <div class="category-icon">🇳🇵</div>
+                <h3>Nepali Books</h3>
+                <p>Literature from Nepal</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="featured">
+        <div class="featured-container">
+            <h2 class="section-title">Featured Rentals</h2>
+            <div class="books-grid" id="booksGrid">
+                <!-- Books will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Detail Modal -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="book-detail-grid">
+                    <div class="book-detail-cover" id="modalCover"></div>
+                    <div class="book-detail-info">
+                        <h2 id="modalTitle"></h2>
+                        <p class="author" id="modalAuthor"></p>
+                        <p class="book-description" id="modalDescription"></p>
+                        
+                        <div class="rental-options">
+                            <h3 style="margin-bottom: 1rem; font-family: 'Libre Baskerville', serif;">Select Rental Period</h3>
+                            <div class="rental-option selected" data-period="7" data-price="50">
+                                <div>
+                                    <strong>7 Days</strong><br>
+                                    <span style="font-size: 0.9rem; color: var(--soft-gray)">Perfect for quick reads</span>
+                                </div>
+                                <span style="font-size: 1.3rem; color: var(--burgundy); font-weight: 700;">Rs. 50</span>
+                            </div>
+                            <div class="rental-option" data-period="15" data-price="100">
+                                <div>
+                                    <strong>15 Days</strong><br>
+                                    <span style="font-size: 0.9rem; color: var(--soft-gray)">Most popular choice</span>
+                                </div>
+                                <span style="font-size: 1.3rem; color: var(--burgundy); font-weight: 700;">Rs. 100</span>
+                            </div>
+                            <div class="rental-option" data-period="30" data-price="150">
+                                <div>
+                                    <strong>30 Days</strong><br>
+                                    <span style="font-size: 0.9rem; color: var(--soft-gray)">Best value</span>
+                                </div>
+                                <span style="font-size: 1.3rem; color: var(--burgundy); font-weight: 700;">Rs. 150</span>
+                            </div>
+                            <p style="margin-top: 1rem; padding: 1rem; background: #fff9e6; border-radius: 6px; font-size: 0.9rem; color: var(--soft-gray);">
+                                ⚠️ <strong>Late Return Fine:</strong> Rs. 5 per day after rental period expires
+                            </p>
+                        </div>
+                        
+                        <button class="modal-add-cart" onclick="addToCartFromModal()">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p style="font-size: 3rem; margin-bottom: 1rem;">📚</p>
+                <p>Your cart is empty</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Start browsing to add books</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample book data
+        const books = [
+            {
+                id: 1,
+                title: "The Midnight Library",
+                author: "Matt Haig",
+                price: 50,
+                category: "fiction",
+                description: "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived. A beautiful exploration of regret, hope, and the infinite possibilities of human existence."
+            },
+            {
+                id: 2,
+                title: "Atomic Habits",
+                author: "James Clear",
+                price: 50,
+                category: "business",
+                description: "No matter your goals, Atomic Habits offers a proven framework for improving every day. James Clear reveals practical strategies that will teach you how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results."
+            },
+            {
+                id: 3,
+                title: "Sapiens",
+                author: "Yuval Noah Harari",
+                price: 50,
+                category: "nonfiction",
+                description: "From a renowned historian comes a groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human."
+            },
+            {
+                id: 4,
+                title: "The Gene",
+                author: "Siddhartha Mukherjee",
+                price: 50,
+                category: "science",
+                description: "A #1 NEW YORK TIMES BESTSELLER. The extraordinary story of the gene, from the discovery of DNA to the controversies of genetic engineering, told through the lens of the author's own family history and the evolving understanding of heredity and identity."
+            },
+            {
+                id: 5,
+                title: "Project Hail Mary",
+                author: "Andy Weir",
+                price: 50,
+                category: "fiction",
+                description: "Ryland Grace wakes up on a spaceship with no memory of why he's there. His crewmates are dead. He's alone. Then he realizes he's on a desperate mission to save humanity. An unforgettable interstellar adventure from the author of The Martian."
+            },
+            {
+                id: 6,
+                title: "Thinking, Fast and Slow",
+                author: "Daniel Kahneman",
+                price: 50,
+                category: "nonfiction",
+                description: "Daniel Kahneman introduces the two systems that drive the way we think. System 1 is fast, intuitive, and emotional; System 2 is slower, more deliberative, and more logical. A groundbreaking tour of the mind and explains the two systems that drive thinking."
+            },
+            {
+                id: 7,
+                title: "The Power of Now",
+                author: "Eckhart Tolle",
+                price: 50,
+                category: "selfhelp",
+                description: "To make the journey into the Now we will need to leave our analytical mind and its false created self, the ego, behind. From the very first page of this extraordinary book, we move rapidly into a significantly higher altitude where we breathe a lighter air."
+            },
+            {
+                id: 8,
+                title: "Can't Hurt Me",
+                author: "David Goggins",
+                price: 50,
+                category: "selfhelp",
+                description: "For David Goggins, childhood was a nightmare - poverty, prejudice, and physical abuse colored his days and haunted his nights. But through self-discipline, mental toughness, and hard work, Goggins transformed himself from a depressed, overweight young man with no future into a U.S. Armed Forces icon."
+            },
+            {
+                id: 9,
+                title: "The Subtle Art of Not Giving a F*ck",
+                author: "Mark Manson",
+                price: 50,
+                category: "selfhelp",
+                description: "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be positive all the time so that we can truly become better, happier people."
+            },
+            {
+                id: 10,
+                title: "Seto Dharti",
+                author: "Amar Neupane",
+                price: 50,
+                category: "nepali",
+                description: "सेतो धर्ती नेपाली साहित्यको एक उत्कृष्ट उपन्यास हो। यो उपन्यासले नेपाली समाजको विभिन्न पक्षहरूलाई प्रस्तुत गर्दछ र मानवीय सम्बन्धको गहिराइलाई छुन्छ।"
+            },
+            {
+                id: 11,
+                title: "Palpasa Cafe",
+                author: "Narayan Wagle",
+                price: 50,
+                category: "nepali",
+                description: "पल्पासा क्याफे नेपाली साहित्यको लोकप्रिय उपन्यास हो जसले माओवादी द्वन्द्वको समयमा प्रेम र जीवनको कथा बुन्दछ। यो एक कलाकारको यात्रा र उसको प्रेम कथा हो।"
+            },
+            {
+                id: 12,
+                title: "Karnali Blues",
+                author: "Buddhisagar",
+                price: 50,
+                category: "nepali",
+                description: "कर्णाली ब्लुज नेपाली साहित्यमा एक महत्त्वपूर्ण योगदान हो। यो उपन्यासले नेपालको पश्चिमी क्षेत्रको जीवन, संघर्ष र सपनाहरूलाई जीवन्त रूपमा प्रस्तुत गर्दछ।"
+            }
+        ];
+
+        let cart = [];
+        let currentBook = null;
+        let selectedRentalOption = { period: 7, price: 50 };
+
+        // Initialize
+        window.onload = function() {
+            renderBooks(books);
+        };
+
+        function renderBooks(booksToRender) {
+            const grid = document.getElementById('booksGrid');
+            grid.innerHTML = '';
+            
+            booksToRender.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                bookCard.onclick = () => openBookModal(book);
+                
+                bookCard.innerHTML = `
+                    <div class="book-cover">${book.title}</div>
+                    <div class="book-info">
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">by ${book.author}</div>
+                        <div class="book-meta">
+                            <div>
+                                <div class="rental-price">Rs. ${book.price}</div>
+                                <div class="rental-period">7 days</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="event.stopPropagation(); quickAddToCart(${book.id})">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(bookCard);
+            });
+        }
+
+        function openBookModal(book) {
+            currentBook = book;
+            document.getElementById('modalCover').textContent = book.title;
+            document.getElementById('modalTitle').textContent = book.title;
+            document.getElementById('modalAuthor').textContent = 'by ' + book.author;
+            document.getElementById('modalDescription').textContent = book.description;
+            document.getElementById('bookModal').classList.add('active');
+            
+            // Reset rental options
+            document.querySelectorAll('.rental-option').forEach((option, index) => {
+                option.classList.remove('selected');
+                if (index === 0) option.classList.add('selected');
+                
+                option.onclick = function() {
+                    document.querySelectorAll('.rental-option').forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedRentalOption = {
+                        period: parseInt(this.dataset.period),
+                        price: parseFloat(this.dataset.price)
+                    };
+                };
+            });
+            
+            selectedRentalOption = { period: 7, price: 50 };
+        }
+
+        function closeModal() {
+            document.getElementById('bookModal').classList.remove('active');
+        }
+
+        function quickAddToCart(bookId) {
+            const book = books.find(b => b.id === bookId);
+            addBookToCart(book, 7, 50);
+        }
+
+        function addToCartFromModal() {
+            addBookToCart(currentBook, selectedRentalOption.period, selectedRentalOption.price);
+            closeModal();
+        }
+
+        function addBookToCart(book, period, price) {
+            cart.push({
+                ...book,
+                rentalPeriod: period,
+                rentalPrice: price
+            });
+            updateCart();
+            showCartNotification();
+        }
+
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartFooter = document.getElementById('cartFooter');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            cartCount.textContent = cart.length;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <p style="font-size: 3rem; margin-bottom: 1rem;">📚</p>
+                        <p>Your cart is empty</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Start browsing to add books</p>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-cover"></div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-period">${item.rentalPeriod} days rental</div>
+                            <div class="cart-item-price">Rs. ${item.rentalPrice.toFixed(0)}</div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + item.rentalPrice, 0);
+                cartTotal.textContent = 'Rs. ' + total.toFixed(0);
+                cartFooter.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        function showCartNotification() {
+            // Simple animation feedback
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function checkout() {
+            alert('Proceeding to checkout! Total: Rs. ' + cart.reduce((sum, item) => sum + item.rentalPrice, 0).toFixed(0) + '\n\nThis is a demo - checkout functionality would be implemented here.\n\nReminder: Late return fine is Rs. 5 per day.');
+        }
+
+        function filterByCategory(category) {
+            const filtered = books.filter(book => book.category === category);
+            renderBooks(filtered);
+            window.scrollTo({ top: document.querySelector('.featured').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        function showPage(page) {
+            if (page === 'account') {
+                alert('My Account page - This would show:\n• Current rentals\n• Rental history\n• Payment methods\n• Account settings');
+            } else if (page === 'browse') {
+                window.scrollTo({ top: document.querySelector('.categories').offsetTop - 100, behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('bookModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
